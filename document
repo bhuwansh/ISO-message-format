@@ -1,0 +1,15 @@
+ISO8583 messaging standard
+
+The ISO8583 standard specifies a message format that describes credit card and debit card data that is exchanged between devices and card issuers.
+
+The International Standards Organization (ISO) defines and publishes data standards that are used by many organizations in the public and private sectors. A commonly used ISO standard for the banking and financial services sector is ISO8583. The ISO8583 standard is typically used by point-of-sale devices and automated teller machines. The ISO8583 messages themselves commonly contain information about the value of a transaction, where the transaction originated, the card account number, and bank sort code. The applications that data is sent to can have various purposes, such as transferring funds between bank accounts, paying bills, or purchasing mobile phone credit. You can use IBM® Integration Bus to transform data between the ISO8583 standard and more convenient formats such as XML, and by other protocols such as WebSphere® MQ, FTP, or HTTP.
+
+ISO8583 messages can be preceded by a customized (often proprietary) header, but the core layout always contains the following sections:
+Message type indicator (MTI)
+The MTI consists of four numeric digits that specify the version of the ISO8583 standard, message class, message function, and message origin. Three versions of the standard exist: 1987, 1993, and 2003. The combination of the four MTI fields specifies the type of interchange message that is being transmitted. Typically, applications use the MTI to determine whether the message requires a response, and the format of the response:
+The values to include in the MTI
+The Message Data fields to include in the reply
+One or more bitmaps
+A message always includes a primary bitmap whose individual bits indicate which of the later fields are present in this particular message instance. The primary bitmap specifies whether fields 1 - 64 are present. If a secondary bitmap is also included, it specifies whether fields 65 - 128 exist. The standard also provides for a tertiary bitmap, which is rarely used. The bitmaps can appear in 8-byte 'packed' format or 16-byte 'unpacked' format.
+Message Data fields
+Message Data fields are defined by the ISO8583 standard, and contain information about the transaction, such as amounts, dates, times, and country codes. Organizations that use ISO8583 often customize these fields.
